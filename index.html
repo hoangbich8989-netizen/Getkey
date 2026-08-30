@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anh Code</title>
+<link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/5338/5338322.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    --primary-color: #6a00ff;
+    --secondary-color: #00d4ff;
+    --accent-color: #f7d40a;
+    --success-color: #4caf50;
+    --dark-bg: #1a1a2e;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-dark: #333;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(106, 0, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.2) 0%, transparent 50%);
+    animation: backgroundShift 15s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-20px, -20px) scale(1.1); }
+}
+
+.profile-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 15px 40px var(--shadow-color);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 8s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Frame Styles */
+.img-area {
+    width: 160px; /* Giảm kích thước khung xuống 160px */
+    height: 160px; /* Giảm kích thước khung xuống 160px */
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(247, 212, 10, 0.5);
+    position: relative;
+    z-index: 2;
+    padding: 15px; /* Giảm padding xuống 15px */
+    background: url('https://choclone.shop/css/khung/khung-doki.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Avatar Image Styles */
+.img-area img {
+    width: 110px; /* Tăng kích thước ảnh lên 110px */
+    height: 110px; /* Tăng kích thước ảnh lên 110px */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+.img-area:hover img {
+    transform: scale(1.1);
+}
+
+/* Name Card Style */
+.name-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.name-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+h2 span {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.instruction-text {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.key-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+#key-display {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 13px;
+    outline: none;
+}
+
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-copy {
+    background: linear-gradient(45deg, var(--primary-color), #8e2de2);
+    color: white;
+    white-space: nowrap;
+}
+
+.btn-music {
+    background: linear-gradient(45deg, var(--secondary-color), #0099cc);
+    color: #000;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.btn-link {
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    color: white;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.contact-item label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+    font-size: 13px;
+}
+
+.datetime {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.footer span {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .profile-card {
+        padding: 20px 15px;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .key-container {
+        flex-direction: column;
+    }
+    #key-display {
+        width: 100%;
+    }
+    .btn-copy {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="profile-card">
+    <div class="img-area">
+        <img src="https://i.pinimg.com/736x/19/ec/af/19ecaf9f6a336c9ccf19b186d9f405de.jpg" alt="Avatar">
+    </div>
+
+    <!-- Name Card -->
+    <div class="name-card">
+        <h2>
+            <span>Anh Code</span>
+            <img height="18" src="https://i.imgur.com/Fcupuom.gif" alt="Icon">
+            <img height="18" src="vietnam.gif" alt="Flag">
+        </h2>
+    </div>
+
+    <div class="instruction-text">Click nút COPY để lấy Key</div>
+
+    <div class="key-container">
+        <input type="text" id="key-display" value=">Erro No Key" readonly>
+        <button id="copy-button" class="btn btn-copy">COPY</button>
+    </div>
+
+    <button id="music-control" class="btn btn-music"><i class="fas fa-music"></i> Bật Nhạc</button>
+
+    <div class="contact-grid">
+        <div class="contact-item">
+            <label>TELEGRAM</label>
+            <a href="https://t.me/shareanhcode" class="btn btn-link" target="_blank"><i class="fab fa-telegram"></i> Truy cập</a>
+        </div>
+        <div class="contact-item">
+            <label>YOUTUBE</label>
+            <a href="https://www.youtube.com/@anhhcode" class="btn btn-link" target="_blank"><i class="fab fa-youtube"></i> Truy cập</a>
+        </div>
+        <div class="contact-item">
+            <label>TẢI TOOL</label>
+            <a href="https://thaylinkdibro.com/" class="btn btn-link" target="_blank"><i class="fas fa-download"></i> Tải về</a>
+        </div>
+        <div class="contact-item">
+            <label>GET COOKIE</label>
+            <a href="https://thaylinkdibro.com/" class="btn btn-link" target="_blank"><i class="fas fa-cookie-bite"></i> Tải về</a>
+        </div>
+    </div>
+
+    <div class="datetime" id="datetime">
+        <span id="day-night-icon"></span>
+        <span id="time-text"></span>
+    </div>
+</div>
+
+<div class="footer">
+    © 2025 <span>Anh Code</span> - All Rights Reserved
+</div>
+
+<audio id="background-music" loop>
+    <source src="/anhcode.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ audio.
+</audio>
+
+<script>
+// --- SCRIPTS ---
+
+// Get key from URL
+function GetURLParameter(sParam) {
+    let sPageURL = window.location.search.substring(1);
+    let sURLVariables = sPageURL.split('&');
+    for (let i = 0; i < sURLVariables.length; i++) {
+        let sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1];
+        }
+    }
+}
+
+const key = GetURLParameter('key');
+const keyDisplay = document.getElementById('key-display');
+if (key) {
+    keyDisplay.value = key;
+}
+
+// Copy to Clipboard functionality
+const copyButton = document.getElementById('copy-button');
+
+copyButton.addEventListener('click', async () => {
+    const keyToCopy = keyDisplay.value;
+
+    if (keyToCopy && keyToCopy !== 'No Key Erro') {
+        try {
+            await navigator.clipboard.writeText(keyToCopy);
+            
+            const originalText = copyButton.innerText;
+            copyButton.innerText = 'ĐÃ SAO CHÉP!';
+            copyButton.style.background = 'linear-gradient(45deg, #4caf50, #45a049)';
+
+            setTimeout(() => {
+                copyButton.innerText = originalText;
+                copyButton.style.background = '';
+            }, 2000);
+
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+            alert('Không thể sao chép key, vui lòng thử lại.');
+        }
+    } else {
+        alert('Không có key để sao chép!');
+    }
+});
+
+// Music Control
+const music = document.getElementById('background-music');
+const musicControl = document.getElementById('music-control');
+let isPlaying = false;
+
+musicControl.addEventListener('click', () => {
+    if (isPlaying) {
+        music.pause();
+        musicControl.innerHTML = '<i class="fas fa-music"></i> Bật Nhạc';
+    } else {
+        music.play().catch(error => {
+            console.error("Audio playback failed:", error);
+        });
+        musicControl.innerHTML = '<i class="fas fa-pause"></i> Tắt Nhạc';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Date and Time
+function updateTimeAndIcon() {
+    const now = new Date();
+    const options = {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    };
+    const formattedTime = new Intl.DateTimeFormat('vi-VN', options).format(now);
+    document.getElementById('time-text').textContent = formattedTime;
+
+    const hours = parseInt(now.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', hour12: false }));
+    const icon = document.getElementById('day-night-icon');
+    icon.textContent = (hours >= 6 && hours < 18) ? "☀️" : "🌙";
+}
+setInterval(updateTimeAndIcon, 1000);
+updateTimeAndIcon();
+
+</script>
+
+</body>
+</html>
